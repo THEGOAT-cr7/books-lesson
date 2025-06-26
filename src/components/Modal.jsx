@@ -1,27 +1,28 @@
-import React from 'react'
+import React from "react";
 
 function Modal({ closeModal }) {
   return (
-    <div className=' bg-white/20 w-full h-screen fixed top-0 mx-auto'>
-      <div className='bg-gray-500 absolute right-1/3 top-1/3 p-5'>
-        <div className=" relative">
-          <button onClick={() => closeModal(false)} className='text-black absolute -top-1 font-semibold right-1'>X</button>
-          <div className='py-5'>
-            <h1>This book is about</h1>
-          </div>
-          {/* body */}
-          <div className='pb-5'>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem, dicta.</p>
-          </div>
-          {/* footer */}
-          <div className="flex gap-3">
-            <button className='p-2 btn btn-neutral bg-red-500' onClick={() => closeModal(false)} on>Cancel</button>
-            <button className='p-2 btn btn-neutral bg-green-600' onClick={() => closeModal(false)} on>Continue</button>
-          </div>
-        </div>
+    <div className="fixed inset-0 bg-white/20 bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-white rounded-xl p-6 max-w-sm w-full shadow-lg relative text-center">
+        <button
+          onClick={() => closeModal(false)}
+          className="absolute top-2 right-2 text-red-500 font-bold text-xl hover:text-red-700"
+        >
+          ×
+        </button>
+        <h2 className="text-xl font-semibold mb-3 text-black">📘 Book Details</h2>
+        <p className="text-gray-700 mb-4">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam beatae, similique qui obcaecati dolorum repellendus libero in modi maiores dignissimos, asperiores recusandae quae eaque dolorem labore repellat nesciunt, hic quod reiciendis itaque fuga! Vitae, vero quidem tenetur voluptatibus ab sit aliquid hic beatae recusandae consequatur inventore nemo a! Consequatur, ducimus.
+        </p>
+        <button
+          onClick={() => closeModal(false)}
+          className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+        >
+          Close
+        </button>
       </div>
     </div>
-  )
+  );
 }
 
-export default Modal
+export default Modal;

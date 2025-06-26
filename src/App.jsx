@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Modal from "./components/Modal";
 import Image1 from "./assets/mockingbird.jpg";
 import Image2 from "./assets/1984.jpg";
 import Image3 from "./assets/great-gatsby.jpg";
@@ -9,10 +10,10 @@ import Image7 from "./assets/lord.jpeg";
 import Image8 from "./assets/hobbit.png";
 import Image9 from "./assets/new.jpg";
 import Image10 from "./assets/punishment.jpg";
-import Modal from "./components/Modal";
 
-function App () {
+function App() {
   const [books, setBooks] = useState([
+    // ... (same book list)
     {
       id: 1,
       title: "To Kill a Mockingbird",
@@ -84,32 +85,38 @@ function App () {
       image: Image10,
     },
   ]);
+
   const [showNotif, setShowNotif] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   const handleBuyNow = () => {
     setShowNotif(true);
     setTimeout(() => setShowNotif(false), 2000);
   };
 
-  const [openModal, setOpenModal] = useState(false)
   return (
-
-
-    <div className="mx-auto relative">
+    <>
       {showNotif && (
-        <div className="fixed top-2 right-2 z-99 py-5 px-7 rounded bg-green-500 text-white shadow-lg transition-all duration-300">
+        <div className="fixed top-2 right-2 z-50 py-5 px-7 rounded bg-green-500 text-white shadow-lg transition-all duration-300">
           <h1>Congratulations, successful!</h1>
         </div>
       )}
 
-      <div className="inline-block">
+      {openModal && <Modal closeModal={setOpenModal} />}
+
+      <div className="mx-auto relative z-0">
         <ul className="grid grid-cols-3 gap-5 justify-between p-5 *:p-5 lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-4">
           {books.map((book) => (
             <li
               key={book.id}
-              className="bg-black/40 relative grid grid-cols-1 items-center gap-2 rounded hover:scale-102 transition-all"
+              className="bg-black/40 relative grid grid-cols-1 items-center gap-2 rounded hover:scale-105 transition-all"
             >
-              <span onClick={() => {setOpenModal(true)}} className="openModalBtn absolute top-2 right-3 bg-gray-500 p-0.5 px-2.5 rounded-full font-semibold cursor-pointer text-sm">!</span>
+              <span
+                onClick={() => setOpenModal(true)}
+                className="openModalBtn absolute top-2 right-3 bg-gray-500 p-0.5 px-2.5 rounded-full font-semibold cursor-pointer text-sm"
+              >
+                !
+              </span>
               <div>
                 <h3 className="font-semibold text-white">{book.title}</h3>
                 <p className="text-white">{book.author}</p>
@@ -126,16 +133,15 @@ function App () {
             </li>
           ))}
         </ul>
-      </div>
-      {openModal && <Modal closeModal={setOpenModal}/>}
 
-      <div className="container">
-        <div className="text-center">
-          <h1>Created by Asadbek Tursunaliyev</h1>
+        <div className="container">
+          <div className="text-center py-6">
+            <h1 className="text-white font-bold">Created by Asadbek Tursunaliyev</h1>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
-};
+}
 
 export default App;
