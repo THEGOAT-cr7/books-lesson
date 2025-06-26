@@ -13,7 +13,6 @@ import Image10 from "./assets/punishment.jpg";
 
 function App() {
   const [books, setBooks] = useState([
-    // ... (same book list)
     {
       id: 1,
       title: "To Kill a Mockingbird",
